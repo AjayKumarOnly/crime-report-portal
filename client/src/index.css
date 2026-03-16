@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(239, 68, 68, 0.03) 0%, transparent 40%);
+    min-height: 100vh;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-slate-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-600 rounded-full; }
+}
+
+@layer components {
+  .card {
+    @apply bg-slate-900 border border-slate-800 rounded-2xl shadow-xl;
+  }
+  .card-glass {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    @apply border border-slate-700/50 rounded-2xl shadow-2xl;
+  }
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 active:bg-primary-800
+           text-white font-semibold px-6 py-2.5 rounded-xl
+           transition-all duration-200 shadow-lg shadow-primary-900/30
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-slate-800 hover:bg-slate-700 text-slate-200
+           font-semibold px-6 py-2.5 rounded-xl
+           transition-all duration-200 border border-slate-700;
+  }
+  .input {
+    @apply bg-slate-800 border border-slate-700 text-slate-100
+           rounded-xl px-4 py-2.5 w-full
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           placeholder:text-slate-500 transition-all duration-200;
+  }
+  .label {
+    @apply text-sm font-medium text-slate-300 mb-1.5 block;
+  }
+  .status-badge {
+    @apply text-xs font-semibold px-2.5 py-1 rounded-full;
+  }
+}
+
+/* Leaflet map dark theme overrides */
+.leaflet-container {
+  background: #0f172a !important;
+  border-radius: 12px;
+}
+.leaflet-tile-pane {
+  filter: saturate(0.8) brightness(0.7);
+}
+.leaflet-control-zoom a {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+/* SOS pulse ring */
+@keyframes sos-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+.sos-ring {
+  animation: sos-ring 1.5s ease-out infinite;
+}
+.sos-ring-2 {
+  animation: sos-ring 1.5s ease-out 0.5s infinite;
+}
